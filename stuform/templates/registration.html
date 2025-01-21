@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background:aqua;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="get">
+        <table>
+        {% comment %} {% for i in form %} {% endcomment %}
+        {{form.as_p}}
+        {% comment %} {% endfor %} {% endcomment %}
+        </table>
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
