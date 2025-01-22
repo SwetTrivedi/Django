@@ -1,7 +1,7 @@
 from django import forms
 class Studentregistration(forms.Form):
     name=forms.CharField(label='name',label_suffix=' ',initial='swet',required=False)
-    # name=forms.CharField(widget=forms.PasswordInput())
+    email=forms.EmailField(widget=forms.PasswordInput())
 
 class Back(forms.Form):
     name=forms.CharField()

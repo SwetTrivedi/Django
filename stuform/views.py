@@ -24,7 +24,7 @@ def get(request):
         if fm.is_valid():
             print("Name",fm.cleaned_data['name'])
             print("email",fm.cleaned_data['email'])
-            fm=Back()
+            fm=Back() 
     else:
         fm=Back()
         print("This is a get method")

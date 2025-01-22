@@ -18,17 +18,17 @@
                 {{i}}
             {% endfor  %} {% endcomment %}
             {% comment %} {{form.as_p}} {% endcomment %}
-        {% comment %} </table> {% endcomment %}
+        {% comment %} </table>  {% endcomment %}
 
 
 
 
-    <form action="" method="post" novalidate>
+        <form action="" method="post" novalidate>
             {% csrf_token %}
             <table>
                 {{form.as_p}}
             </table>
-        <input type="submit" value="submit">
+        <input type="submit" value="submit"> 
     </form>
 </body>
 </html>
