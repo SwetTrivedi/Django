@@ -11,23 +11,22 @@
     </style>
 </head>
 <body>
-    {% comment %} <form action="" method="get">
+     {% comment %} <form action="" method="get"> 
         <table>
-            {% for i in form %}
-                {{i.label_tag}}
+            {% comment %} {% for i in form %} {% endcomment %}
+                {% comment %} {{i.label_tag}}
                 {{i}}
-            {% endfor  %} {% endcomment %}
+            {% endfor  %} {% endcomment %} 
             {% comment %} {{form.as_p}} {% endcomment %}
-        {% comment %} </table>  {% endcomment %}
+        {% comment %} </table>  {% endcomment %} 
 
 
 
-
-        <form action="" method="post" novalidate>
-            {% csrf_token %}
+       <form action="" method="post" novalidate> 
+           {% csrf_token %}
             <table>
                 {{form.as_p}}
-            </table>
+            </table> 
         <input type="submit" value="submit"> 
     </form>
 </body>
