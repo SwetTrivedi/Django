@@ -1,6 +1,10 @@
 from django.urls import path
 from . import views
 urlpatterns=[
+    path('message/',views.message),
+    path('children/',views.student),
+    path('teacher/',views.teacher),
+    path('modelformfield/',views.md1),
     path('modelform/',views.md),
     path('save/',views.saved),
     path('match/',views.matching),

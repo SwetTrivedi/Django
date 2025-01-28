@@ -1,8 +1,9 @@
 from django import forms
 from django.core import validators
-
+# this is modelinherit import
+from . models import Modelinherit
 #this is modelform import 
-from . models import User
+from . models import Lame
 # This class is label tag uses
 
 
@@ -22,7 +23,7 @@ class Back(forms.Form):
 class Fields(forms.Form):
     name=forms.CharField(min_length=2,max_length=5,strip=False, error_messages={'required':'please enter your name'}
                          ,empty_value='swet')
-    roll=forms.IntegerField(max_value=50)
+    roll=forms.IntegerField(max_value=50,min_value=10)
     agree=forms.BooleanField()
 
 # This is cleaning and validating specific fields method 1.
@@ -88,9 +89,40 @@ class Saving(forms.Form):
 #This is a model form page .
 class Modelform(forms.ModelForm):
     class Meta:
-        model=User
+        model=Lame
         fields=['name','email','password']
         labels={'name':'Enter Name'}
         error_massage={'name':{'required':'Write Your Name'}}
         widgets={'password':forms.PasswordInput,'name':forms.TextInput(attrs={'placeholder':'Enter your name'})}
 
+
+# This is a select model form fields
+
+class Modelform1(forms.ModelForm):
+    class Meta:
+        model=Lame
+        fields='__all__'
+
+
+
+
+# This is a model inheritance.    
+                                     
+class Student(forms.ModelForm):
+    class Meta:
+        model=Modelinherit
+        fields=['student_name','email','password']
+class Teacher(Student):
+    class Meta(Student.Meta):
+        fields=['teacher_name','email','password']
+
+
+###########################################################################################################################
+
+# This is use messages 
+
+from . models import Messages
+class Name(forms.ModelForm):
+    class Meta:
+        model=Messages
+        fields=['student','email','password']

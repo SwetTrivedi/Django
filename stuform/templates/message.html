@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .success{
+            color:green;
+        }
+        .info{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post" novalidate> 
+        {% csrf_token %}
+         <table>
+             {{form.as_p}}
+         </table> 
+     <input type="submit" value="submit"><br/>
+ </form>
+ {% if messages %}
+    {% for i in messages %}
+        <span {% if i.tags %} class="{{i.tags}}" {% endif %}>{{i}}</span>
+        
+    {% endfor %}
+{% endif %}
+</body>
+</html>

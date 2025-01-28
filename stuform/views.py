@@ -6,9 +6,10 @@ from . forms import Student1
 from . forms import builtin
 from . forms import match
 from . forms import Saving
-from . models import User
+from . models import Lame
 from . forms import Student2
 from . forms import Modelform
+from . forms import Modelform1
 from django.http import HttpResponseRedirect
 # Create your views here.
 def thanku(request):
@@ -148,7 +149,7 @@ def saved(request):
            nm=fm.cleaned_data['name']
            em=fm.cleaned_data['email']
            pw=fm.cleaned_data['password']
-           reg=User(name=nm,email=em,password=pw)
+           reg=Lame(name=nm,email=em,password=pw)
            reg.save()
 
     else:
@@ -161,7 +162,7 @@ def saved(request):
 
 def md(request):
     if request.method=='POST':
-        pi=User.objects.get(pk=6)
+        pi=Lame.objects.get(pk=6)
         fm=Modelform(request.POST,instance=pi )
         if fm.is_valid():
             fm.save()
@@ -172,3 +173,111 @@ def md(request):
     else:
         fm=Modelform()
     return render(request,'registration.html',{'form':fm})
+
+
+def md1(request):
+    if request.method=='POST':
+        fm=Modelform1(request.POST)
+        if fm.is_valid():
+            print("Name:" ,fm.cleaned_data['name'])
+            print("Email:",fm.cleaned_data['email'])
+            print("Password:",fm.cleaned_data['password'])
+
+
+    else:
+        fm=Modelform1()
+    return render(request,'registration.html',{'form':fm})
+
+
+
+
+
+
+################################################################################################################################################################
+
+
+# THis is dynamic url Example   
+
+
+def show_details(request,my_id):
+    return render (request,'dynamicurl.html')
+
+
+
+
+def show_details1(request,my_id):
+    if my_id==1:
+        student={'id':my_id,'name':'swet'}
+    if my_id==2:
+        student={'id':my_id,'name':'Ashish'}
+    if my_id==3:
+        student={'id':my_id,'name':'Khushi'}
+    
+    return render (request,'dynamicurl.html',student)
+
+
+
+
+
+# This is modelinheritance concept
+from . forms import Student
+from . forms import Teacher
+# from . models import Modelinherit 
+def student(request):
+    if request.method=='POST':
+        fm=Student(request.POST)
+        if fm.is_valid():
+           fm.save()
+
+    else:
+        fm=Student()
+    return render(request,'registration.html',{'form':fm})
+
+def teacher(request):
+    if request.method=='POST':
+        fm=Teacher(request.POST)
+        if fm.is_valid():
+           fm.save()
+
+    else:
+        fm=Teacher()
+    return render(request,'registration.html',{'form':fm})
+
+
+
+
+
+
+
+
+
+
+
+
+##############################################################################################################################################################
+
+
+# This is messages frame work code  
+
+from . forms import Name
+from django.contrib import messages
+def message(request):
+    if request.method=='POST':
+        fm=Name(request.POST)
+        if fm.is_valid():
+            fm.save()
+            messages.add_message(request,messages.SUCCESS,'Your Account is Created Successfully !!!')
+            messages.info(request,'Now you can login')
+            print(messages.get_level(request))
+            messages.set_level(request,messages.DEBUG)
+            messages.debug(request,"this is Debug")
+    else:
+        fm=Name()
+    return render(request,'message.html/',{'form':fm})
+
+
+
+
+
+##########################################################################################################################################################################
+
